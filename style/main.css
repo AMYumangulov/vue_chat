@@ -1,0 +1,83 @@
+body {
+	font-family: "Noto Sans JP", sans-serif
+}
+
+.menu {
+	display: flex;
+	background-color: #6093C7;
+	margin-bottom: 0;
+}
+
+.menu__name {
+	margin-left: 5px;
+	color: #fff;
+
+}
+.menu__back{
+	display: flex;
+	align-items: center;
+	color: #fff;
+}
+
+.menu__avtar {
+	margin-left: 20px;
+
+}
+.content{
+	background-color: #edf9ff;
+	padding: 10px
+}
+
+.message{	
+	margin: 0 10px;
+}
+
+.message__out{
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 10px;
+
+}
+.message__in{	
+	display: flex;
+	justify-content: flex-start;
+	margin-top: 10px;
+}
+
+.message__out__content{
+  	width: 50%;
+	border: 1px ;
+	border-radius: 5px;
+	background-color: #93d4f5;
+
+}
+
+.message__in__content{
+  	width: 50%;
+	border: 1px ;
+	border-radius: 5px; 
+	background-color: #fff;
+}
+
+.content-text {
+	margin: 5px 10px;
+}
+
+.footer {
+	background-color: #d8e8f0;
+}
+.input {
+	display: flex;
+	align-items: center;
+	padding: 10px 10px;
+}
+input{
+	flex-grow: 10;
+	height: 50px;
+	border: 1px ;
+	border-radius: 5px; 
+}
+.fa {	
+	margin: 0 10px;
+	font-size: 2em;
+}

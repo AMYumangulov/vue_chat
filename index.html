@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>My first Vue app</title>
+		<script src="https://unpkg.com/vue"></script>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="style/main.css">
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div id="app">
+			<div>
+				<header class="header">
+					<menu class="menu">
+					<div class="menu__back">
+						<p><i class="fa fa-step-backward" aria-hidden="true"></i></p>
+					</div>
+					<div class="menu__avtar">
+						<p><i class="fa fa-futbol-o fa-spin fa-2x"></i></p>
+					</div>
+					<div class="menu__name">
+						<h3>Денис</h3>
+					</div>
+					</menu>
+				</header>
+			</div>
+			
+			<div class="content">
+				<div class="message">
+					<div class="message__out">
+						<div class="message__out__content">
+							<p class="content-text">
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo illum mollitia nemo tempore veritatis nihil!
+							</p>
+						</div>
+					</div>
+					<div class="message__in">
+						<div class="message__in__content">
+							<p class="content-text">
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed, incidunt. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est, dolorem ea. Reprehenderit dicta quis temporibus, veniam quod vero, facilis ipsa.
+							</p>
+						</div>
+					</div>
+					<div class="message__out" v-if="val.itsMy" v-for="( val) in myArray" :key="val.var">
+						<div class="message__out__content" >
+							<p class="content-text" >
+								{{val.var }}
+							</p>
+						</div>
+					</div>
+					<div class="message__in" v-else v-for="( val) in myArray" :key="val.var">
+						<div class="message__in__content">
+							<p class="content-text">
+								{{val.var }}
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<footer class="footer">
+				<div class="input">
+					<input type="text" @input="myInput()" v-model="cc" v-on:keyup.enter="myFunction()">
+					<i class="fa fa-paper-plane fa-1" aria-hidden="true"  @click="myFunction()"></i>
+				</div>
+			</footer>
+		</div>
+		<script>
+		var app = new Vue({ 
+			el: '#app',
+			data: ()=>{
+					return {
+						myArray: [],
+						cc: ""
+				};
+			},
+			methods: {
+				myAutoSend() {
+					this.myArray.push({
+						var: "Этот текст был создан автоматически" ,
+						itsMy: false});					
+				},
+				myFunction() {
+					if (this.cc) {
+						this.myArray.push({
+							var: this.cc,
+							itsMy: true});
+						this.cc = "";
+						
+						//setTimeout("alert('Привет')", 1000);
+						this.myArray.push({
+							var: "Этот текст был создан автоматически" ,
+							itsMy: false});
+					}
+				},
+				myInput(){
+					console.log(this.cc);
+				}
+			},
+			props: {
+				msg: String
+			}
+		})
+		</script>
+	</body>
+</html>
