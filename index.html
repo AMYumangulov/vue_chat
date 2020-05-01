@@ -24,80 +24,57 @@
 					</menu>
 				</header>
 			</div>
-			
 			<div class="content">
 				<div class="message">
-					<div class="message__out">
-						<div class="message__out__content">
-							<p class="content-text">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo illum mollitia nemo tempore veritatis nihil!
-							</p>
-						</div>
-					</div>
-					<div class="message__in">
-						<div class="message__in__content">
-							<p class="content-text">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed, incidunt. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est, dolorem ea. Reprehenderit dicta quis temporibus, veniam quod vero, facilis ipsa.
-							</p>
-						</div>
-					</div>
-					<div class="message__out" v-if="val.itsMy" v-for="( val) in myArray" :key="val.var">
-						<div class="message__out__content" >
-							<p class="content-text" >
-								{{val.var }}
-							</p>
-						</div>
-					</div>
-					<div class="message__in" v-else v-for="( val) in myArray" :key="val.var">
-						<div class="message__in__content">
-							<p class="content-text">
-								{{val.var }}
-							</p>
+					<div v-for="(val, key) in myArray" :key="key">
+						<div :class="[{'message__out': val.itsMy}, {'message__in': !val.itsMy}]">
+							<div class="message-1">
+								<p class="content-text" >
+									{{val.var }}
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<footer class="footer">
 				<div class="input">
-					<input type="text" @input="myInput()" v-model="cc" v-on:keyup.enter="myFunction()">
-					<i class="fa fa-paper-plane fa-1" aria-hidden="true"  @click="myFunction()"></i>
+					<input type="text" v-model="cc" v-on:keyup.enter="myFunction()">
+					<i class="fa fa-paper-plane fa-1" aria-hidden="true" @click="myFunction()"></i>
 				</div>
 			</footer>
 		</div>
 		<script>
-		var app = new Vue({ 
+		var app = new Vue({
 			el: '#app',
-			data: ()=>{
+			data: () => {
 					return {
-						myArray: [],
+						myArray: [{
+							var: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo illum mollitia nemo tempore veritatis nihil!-->',
+							itsMy: true,
+						}, {
+							var: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo illum mollitia nemo tempore veritatis nihil!-->',
+							itsMy: false,
+						}],
 						cc: ""
 				};
 			},
 			methods: {
-				myAutoSend() {
-					this.myArray.push({
-						var: "Этот текст был создан автоматически" ,
-						itsMy: false});					
-				},
 				myFunction() {
 					if (this.cc) {
 						this.myArray.push({
 							var: this.cc,
 							itsMy: true});
+
 						this.cc = "";
-						
-						//setTimeout("alert('Привет')", 1000);
-						this.myArray.push({
-							var: "Этот текст был создан автоматически" ,
-							itsMy: false});
+
+						setTimeout(() => {
+							this.myArray.push({
+								var: "Текстовое сообщение",
+								itsMy: false});
+						}, 1000);
 					}
-				},
-				myInput(){
-					console.log(this.cc);
 				}
-			},
-			props: {
-				msg: String
 			}
 		})
 		</script>
